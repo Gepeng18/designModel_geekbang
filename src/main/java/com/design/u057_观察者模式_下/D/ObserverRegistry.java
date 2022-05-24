@@ -50,6 +50,7 @@ public class ObserverRegistry {
             Class<?> eventType = entry.getKey();
             Collection<ObserverAction> eventActions = entry.getValue();
             // 判断全局map中的key(eventType) 是否是调用者 postedEventType的父类
+            // 这意味当post了一个子类时，注册表中key为父类和子类的listener都会获得通知
             if (eventType.isAssignableFrom(postedEventType)) {
                 matchedObservers.addAll(eventActions);
             }
